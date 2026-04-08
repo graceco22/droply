@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { LogIn, LogOut, Rabbit, Shield, Bell } from "lucide-react";
 import Image from "next/image";
+import AddProductForm from "../components/AddProductForm.jsx";
 
 export default function Home() {
   const user = null;
@@ -66,8 +67,24 @@ export default function Home() {
         </div>
 
         {/* Add Product Form */}
+        <AddProductForm user={user} />
 
         {/* Features */}
+        {products.length === 0 && (
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16">
+            {FEATURES.map(({ icon: Icon, title, description }) => (
+              <div
+                key={title}
+                className="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <Icon className="w-6 h-6 text-red-600" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-600">{description}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
