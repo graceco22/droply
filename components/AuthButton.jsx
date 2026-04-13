@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { LogIn, LogOut } from "lucide-react";
 import { AuthModal } from "./AuthModal";
 import { useState } from "react";
+import { signOut } from "@/app/actions";
 
 const AuthButton = ({ user }) => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -12,7 +13,7 @@ const AuthButton = ({ user }) => {
   if (user) {
     return (
       <>
-        <form action={() => {}}>
+        <form action={signOut}>
           <Button variant="ghost" size="lg" type="submit" className="gap-2">
             <LogOut className="w-4 h-4" />
             Sign Out
