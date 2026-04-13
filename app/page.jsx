@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { LogIn, LogOut, Rabbit, Shield, Bell } from "lucide-react";
 import Image from "next/image";
 import AddProductForm from "../components/AddProductForm.jsx";
+import AuthButton from "@/components/AuthButton";
 
 export default function Home() {
   const user = null;
@@ -41,13 +42,7 @@ export default function Home() {
           </div>
 
           {/* Auth Button */}
-          <Button
-            variant="default"
-            size="lg"
-            className="bg-red-600 hover:bg-red-700 gap-2">
-            <LogIn className="w-4 h-4" />
-            Sign In
-          </Button>
+          <AuthButton user={user} />
         </div>
       </header>
 
