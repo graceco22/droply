@@ -110,3 +110,19 @@ export async function deleteProduct(productId) {
     return { error: error.message };
   }
 }
+
+export async function getProducts() {
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    console.error("Get products error:", error);
+    return [];
+  }
+}
