@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { AuthModal } from "./AuthModal";
 
 const AddProductForm = ({ user }) => {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showAuthModal, setShowAuthModal] = userState(false);
 
   const handleSubmit = async (e) => {};
 
@@ -41,6 +43,10 @@ const AddProductForm = ({ user }) => {
       </form>
 
       {/* Auth Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
     </>
   );
 };
