@@ -12,6 +12,7 @@ import AddProductForm from "../components/AddProductForm.jsx";
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server.js";
 import { getProducts } from "./actions.js";
+import ProductCard from "@/components/ui/ProductCard.jsx";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -105,12 +106,11 @@ export default async function Home() {
             <span className="text-sm text-gray-650">
               {products.length} {products.length === 1 ? "product" : "products"}
             </span>
-
-            <div>
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 items-start">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
         </section>
       )}
