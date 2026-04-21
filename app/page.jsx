@@ -105,6 +105,12 @@ export default async function Home() {
             <span className="text-sm text-gray-650">
               {products.length} {products.length === 1 ? "product" : "products"}
             </span>
+
+            <div>
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </section>
       )}
