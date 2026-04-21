@@ -12,7 +12,7 @@ import AddProductForm from "../components/AddProductForm.jsx";
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server.js";
 import { getProducts } from "./actions.js";
-import ProductCard from "@/components/ui/ProductCard.jsx";
+import ProductCard from "@/components/ProductCard.jsx";
 
 export default async function Home() {
   const supabase = await createClient();
