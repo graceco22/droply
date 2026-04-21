@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { AuthModal } from "./AuthModal";
 import { addProduct } from "@/app/actions";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const AddProductForm = ({ user }) => {
   const [url, setUrl] = useState("");
@@ -33,6 +34,8 @@ const AddProductForm = ({ user }) => {
       toast.success(result.message || "Product tracked successfully!");
       setUrl("");
     }
+
+    setLoading(false);
   };
 
   return (
