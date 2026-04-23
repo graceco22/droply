@@ -11,9 +11,25 @@ import {
   YAxis,
 } from "recharts";
 
-const PriceChart = () => {
+export default function PriceChart({ productId }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      const history = await getPriceHistory(productId);
+
+      const chartData = history.map((item) => ({
+        date: new Date(item.checked_at).toLocaleDateString(),
+        price: parseFloat(item.price),
+      }));
+
+      setData(chartData);
+      setLoading(false);
+    }
+
+    loadData();
+  }, [productId]);
 
   return (
     <LineChart
@@ -43,6 +59,4 @@ const PriceChart = () => {
       <Tooltip />
     </LineChart>
   );
-};
-
-export default PriceChart;
+}
