@@ -7,6 +7,7 @@ import {
   Legend,
   Line,
   LineChart,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -52,31 +53,32 @@ export default function PriceChart({ productId }) {
   }
 
   return (
-    <LineChart
-      style={{ width: "100%", aspectRatio: 1.618, maxWidth: 600 }}
-      responsive
-      data={data}
-      margin={{
-        top: 20,
-        right: 20,
-        bottom: 5,
-        left: 0,
-      }}>
-      <CartesianGrid stroke="#aaa" strokeDasharray="5 5" />
-      <Line
-        type="monotone"
-        dataKey="uv"
-        stroke="purple"
-        strokeWidth={2}
-        name="My data series name"
-      />
-      <XAxis dataKey="name" tick={renderCustomAxisTick} height={50} />
-      <YAxis
-        width="auto"
-        label={{ value: "UV", position: "insideLeft", angle: -90 }}
-      />
-      <Legend align="right" />
-      <Tooltip />
-    </LineChart>
+    <div className="w-full">
+      <h4 className="text-sm font-semibold mb-4 text-gray-700">
+        Price History
+      </h4>
+      <ResponsiveContainer width="100%" height={200}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+          <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="#9ca3af" />
+          <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "white",
+              border: "1px solid #e5e7eb",
+              borderRadius: "6px",
+            }}
+          />
+          <Line
+            type="monotone"
+            dataKey="price"
+            stroke="#FA5D19"
+            strokeWidth={2}
+            dot={{ fill: "#FA5D19", r: 4 }}
+            activeDot={{ r: 6 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
