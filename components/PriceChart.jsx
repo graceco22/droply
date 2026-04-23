@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import React from "react";
 import {
   CartesianGrid,
@@ -10,6 +11,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useEffect, useState } from "react";
+import { getPriceHistory } from "@/app/actions";
 
 export default function PriceChart({ productId }) {
   const [data, setData] = useState([]);
@@ -30,6 +33,23 @@ export default function PriceChart({ productId }) {
 
     loadData();
   }, [productId]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-8 text-gray-500 w-full">
+        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+        Loading chart...
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="text-center py-8 text-gray-500 w-full">
+        No price history yet. Check back after the first daily update!
+      </div>
+    );
+  }
 
   return (
     <LineChart
